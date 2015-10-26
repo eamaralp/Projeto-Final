@@ -42,17 +42,22 @@ void loop()
     kwhTotal = kwhTotal + (((Irms02*111.1)/1000.0) * 1.0/3600.0 * (timems/1000.0)); 
     kwhTotal = kwhTotal + (((Irms03*111.1)/1000.0) * 1.0/3600.0 * (timems/1000.0)); 
   }
+  else{
+    Pot01 = 0;
+  }
 
 
   dtostrf(Irms01, 3, 3, TIrms);
   myGLCD.clrScr();
-  myGLCD.print("Kw/h TOTAL:", LEFT, 0);
-  myGLCD.print("Potencia(W):", LEFT, 22);
+  myGLCD.print("S1___", LEFT, 0);
+  myGLCD.print("S2___", LEFT, 8);
+  myGLCD.print("S3___", LEFT, 17);
+  myGLCD.print("TOTAL:", LEFT, 25);
   dtostrf(kwhTotal, 4, 5, TIrms);
-  myGLCD.print(TIrms, CENTER, 10);          
-  dtostrf(Pot01, 3, 5, TIrms);
+  myGLCD.print(TIrms, CENTER, 38);          
+  dtostrf(Pot01, 4, 0, TIrms);
   myGLCD.clrLine(0, 34, 80, 45);
-  myGLCD.print(TIrms, CENTER, 35);          
+  myGLCD.print(TIrms, CENTER, 0);          
   myGLCD.update();
   Serial.print("Irms:");
   Serial.println(TIrms);           // Irms
